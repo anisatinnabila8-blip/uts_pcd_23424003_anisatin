@@ -1,0 +1,96 @@
+ Analisa
+
+1. Perbedaan persebaran nilai keabuan antara ketiga citra
+
+a. Citra Grayscale (Asli)
+Citra grayscale memiliki distribusi nilai keabuan asli dari gambar, yaitu rentang intensitas 0 (hitam) sampai 255 (putih). Persebaran pada histogram bergantung pada karakteristik citra:
+
+* Jika citra gelap, histogram cenderung menumpuk di kiri (nilai rendah).
+* Jika citra terang, histogram cenderung ke kanan (nilai tinggi).
+* Jika kontras baik, histogram tersebar lebih merata.
+
+
+b. Citra Negatif
+Transformasi negatif menggunakan rumus:
+G = 255 - F
+
+Nilai keabuan dibalik:
+
+* Piksel gelap menjadi terang.
+* Piksel terang menjadi gelap.
+
+Persebaran histogram:
+
+* Histogram citra negatif merupakan kebalikan (mirror) dari histogram grayscale.
+* Jika grayscale dominan di kiri, pada negatif akan dominan di kanan.
+
+Efek:
+
+* Tidak mengubah jumlah piksel, hanya membalik intensitasnya.
+* Cocok untuk menonjolkan objek terang pada latar gelap.
+
+
+c. Citra Logaritmik
+Transformasi logaritmik:
+G = c \log(1+F)
+dengan
+c = \frac{255}{\log(1+\max(F))}
+
+Persebaran histogram:
+
+* Intensitas rendah (gelap) diperluas (stretching).
+* Intensitas tinggi (terang) dikompresi.
+
+Efek:
+
+* Detail pada area gelap lebih terlihat.
+* Histogram cenderung menyebar pada level keabuan rendah-menengah.
+* Kontras di area shadow meningkat.
+
+2. Kapan transformasi logaritmik lebih bermanfaat dibanding negatif?
+
+Transformasi logaritmik lebih bermanfaat ketika:
+
+ a. Citra memiliki banyak area gelap
+
+Jika detail pada daerah gelap sulit terlihat, transformasi logaritmik dapat memperjelas detail tersebut.
+
+Contoh:
+
+* Foto underexposure
+* Citra malam
+* Shadow pada objek
+
+ b. Rentang dinamis citra sangat besar
+
+Jika terdapat perbedaan intensitas yang jauh antara area gelap dan terang, logaritmik membantu menyeimbangkan kontras.
+
+Contoh:
+
+* Citra medis (X-Ray, MRI)
+* Citra satelit
+* Astronomi
+
+ c. Saat ingin enhancement (peningkatan kualitas citra)
+
+Logaritmik meningkatkan kualitas visual, sedangkan negatif hanya membalik intensitas.
+
+Mengapa bukan negatif?
+
+Transformasi negatif hanya:
+
+* membalik terang ↔ gelap
+* tidak meningkatkan detail tersembunyi.
+
+Sedangkan logaritmik:
+
+* meningkatkan detail area gelap
+* memperbaiki kontras
+* lebih cocok untuk image enhancement.
+
+#Kesimpulan
+
+* Negatif digunakan untuk inversi citra atau menonjolkan objek tertentu.
+* Logaritmik digunakan saat ingin memperjelas detail terutama pada area gelap dan citra dengan dynamic range besar.
+
+

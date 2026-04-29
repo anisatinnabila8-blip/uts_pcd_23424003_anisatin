@@ -1,0 +1,105 @@
+Analisa
+
+ 1. Perbandingan hasil visual dan nilai piksel rata-rata
+
+ a. Low Pass Filter (LPF)
+
+  Hasil visual:
+
+* Citra terlihat lebih halus atau blur.
+* Noise berkurang.
+* Detail kecil dan tepi menjadi kurang tajam.
+
+  Nilai piksel rata-rata:
+
+* Rata-rata intensitas biasanya tidak berubah banyak karena LPF hanya meratakan nilai piksel dengan tetangganya.
+* Distribusi intensitas menjadi lebih homogen.
+
+  Karakteristik:
+
+* Menekan perubahan intensitas yang tajam.
+* Mengurangi komponen frekuensi tinggi.
+
+
+ b. High Pass Filter (HPF)
+
+  Hasil visual:
+* Menonjolkan tepi dan kontur objek.
+* Area homogen cenderung gelap.
+* Detail perubahan intensitas tampak jelas.
+
+  Nilai piksel rata-rata:
+* Cenderung kecil/mendekati nol (atau rendah), karena filter lebih menonjolkan perubahan intensitas dibanding intensitas asli.
+* Banyak piksel latar menjadi bernilai rendah, sedangkan tepi memiliki nilai tinggi.
+
+  Karakteristik:
+* Memperkuat detail dan edge.
+* Menonjolkan frekuensi tinggi.
+
+
+ c. Band Pass Filter (BPF / Sharpening)
+
+  Hasil visual:
+* Citra lebih tajam dibanding original.
+* Detail objek lebih jelas.
+* Tepi diperkuat tetapi bentuk asli citra tetap dipertahankan.
+
+  Nilai piksel rata-rata:
+* Umumnya mendekati citra asli, tetapi kontras meningkat.
+* Intensitas pada area tepi dapat lebih tinggi.
+
+  Karakteristik:
+
+* Menguatkan detail tertentu sambil mempertahankan informasi utama citra.
+
+ 2. Hubungan domain spasial dan domain frekuensi
+
+ a. Domain Spasial
+Domain spasial adalah pemrosesan citra langsung pada nilai piksel menggunakan kernel (mask) seperti konvolusi.
+Pada praktikum ini:
+* LPF, HPF, dan BPF diterapkan di **domain spasial** menggunakan kernel 3×3.
+
+
+ b. Domain Frekuensi
+Domain frekuensi melihat citra sebagai kombinasi:
+* Frekuensi rendah → area halus, perubahan intensitas lambat
+* Frekuensi tinggi → tepi, detail, noise
+
+
+ Low Pass Filter (LPF)
+  Di domain spasial:
+* Merata-ratakan piksel tetangga.
+
+  Di domain frekuensi:
+* Meloloskan frekuensi rendah.
+* Meredam frekuensi tinggi.
+
+Artinya:
+* Detail dan noise berkurang.
+* Gambar menjadi halus.
+
+
+ High Pass Filter (HPF)
+  Di domain spasial:
+* Menggunakan kernel pendeteksi perubahan intensitas.
+
+  Di domain frekuensi:
+* Meloloskan frekuensi tinggi.
+* Menekan frekuensi rendah.
+
+Artinya:
+* Tepi dan detail diperkuat.
+* Area halus diabaikan.
+
+
+ Band Pass Filter (BPF)
+Di domain spasial:
+* Menajamkan citra dengan kombinasi informasi asli dan tepi.
+
+  Di domain frekuensi:
+* Meloloskan rentang frekuensi tertentu.
+* Menekan frekuensi terlalu rendah dan terlalu tinggi.
+
+Artinya:
+* Detail penting diperkuat tanpa hanya menampilkan edge saja.
+
